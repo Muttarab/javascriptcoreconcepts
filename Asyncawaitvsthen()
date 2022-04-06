@@ -1,0 +1,62 @@
+Using `then()` vs Async/Await in JavaScript
+Explaination:
+When making async requests, you can either use then() or async/await. Async/await and then() are very similar.
+The difference is that in an async function, JavaScript will pause the function execution until the promise settles. With then(), the rest of the function will continue to execute but JavaScript won't execute the .then() callback until the promise settles.
+//async await
+async function myAsyncawait(url) {
+    try {
+      let result = await fetch(url);
+      console.log(await result.json());
+    } catch (error) {
+      console.log(error);
+    }
+}
+myAsyncawait(`https://mocki.io/v1/d4867d8b-b5d5-4a48-a4ab-79131b5809b8`);
+
+
+
+//async await another example
+async function testasyncawait() {
+  console.log('Ready');
+  let example = await fetch('http://httpbin.org/get');
+  console.log('I will print second');
+}
+testasyncawait();
+console.log('I will print first');
+
+
+
+//then()
+function testthen() {
+  console.log('Ready');
+  let example = fetch('http://httpbin.org/get').then((res) => {
+    console.log('This is inside the then() block');
+  });
+  console.log('This is after the fetch statement where we are now executing other code that is not async');
+
+}
+
+testthen();
+console.log('this is after the entire function');
+
+
+
+OUTPUT:
+"Ready"
+"I will print first"
+"Ready"
+"This is after the fetch statement where we are now executing other code that is not async"
+"this is after the entire function"
+[{
+  city: "London",
+  name: "Harry Potter"
+}, {
+  city: "Madrid",
+  name: "Don Quixote"
+}, {
+  city: "Paris",
+  name: "Joan of Arc"
+}, {
+  city: "Alabama",
+  name: "Rosa Park"
+}]
