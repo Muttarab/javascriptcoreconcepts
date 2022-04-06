@@ -1,7 +1,9 @@
-Using `then()` vs Async/Await in JavaScript
-Explaination:
-When making async requests, you can either use then() or async/await. Async/await and then() are very similar.
-The difference is that in an async function, JavaScript will pause the function execution until the promise settles. With then(), the rest of the function will continue to execute but JavaScript won't execute the .then() callback until the promise settles.
+//Using `then()` vs Async/Await in JavaScript
+//Explaination:
+//When making async requests, you can either use then() or async/await. Async/await and then() are very similar.
+//The difference is that in an async function, JavaScript will pause the function execution until the promise settles. With then(), 
+//the rest of the function will continue to execute but JavaScript won't execute the .then() callback until the promise settles.
+
 //async await
 async function myAsyncawait(url) {
     try {
@@ -18,7 +20,7 @@ myAsyncawait(`https://mocki.io/v1/d4867d8b-b5d5-4a48-a4ab-79131b5809b8`);
 //async await another example
 async function testasyncawait() {
   console.log('Ready');
-  let example = await fetch('http://httpbin.org/get');
+  let example = await fetch(`https://mocki.io/v1/d4867d8b-b5d5-4a48-a4ab-79131b5809b8`);
   console.log('I will print second');
 }
 testasyncawait();
@@ -29,7 +31,7 @@ console.log('I will print first');
 //then()
 function testthen() {
   console.log('Ready');
-  let example = fetch('http://httpbin.org/get').then((res) => {
+  let example = fetch(`https://mocki.io/v1/d4867d8b-b5d5-4a48-a4ab-79131b5809b8`).then((res) => {
     console.log('This is inside the then() block');
   });
   console.log('This is after the fetch statement where we are now executing other code that is not async');
@@ -38,7 +40,6 @@ function testthen() {
 
 testthen();
 console.log('this is after the entire function');
-
 
 
 OUTPUT:
@@ -60,3 +61,5 @@ OUTPUT:
   city: "Alabama",
   name: "Rosa Park"
 }]
+"I will print second"
+"This is inside the then() block"
