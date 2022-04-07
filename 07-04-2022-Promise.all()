@@ -1,0 +1,70 @@
+//Promise.all()
+//The Promise.all() method returns a single promise that resolves when all the input promises have been resolved
+//If one of the input promise rejects, the Promise.all() method immediately returns a promise that rejects with an error of the first rejected promise
+//resolved promises example in promise.all()
+const a1 = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    console.log('The first promise has resolved');
+    resolve(10);
+  }, 1 * 1000);
+});
+const a2 = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    console.log('The second promise has resolved');
+    resolve(20);
+  }, 2 * 1000);
+});
+const a3 = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    console.log('The third promise has resolved');
+    resolve(30);
+  }, 3 * 1000);
+});
+
+Promise.all([a1, a2, a3]).then((results) => {
+  const total = results.reduce((p, c) => p + c);
+
+  console.log(`Results: ${results}`);
+  console.log(`Total: ${total}`);
+});
+
+OUTPUT:
+The first promise has resolved
+The second promise has resolved
+The third promise has resolved
+Results: 10,20,30
+Total: 60
+
+
+//rejected promises example in promise.all()
+const b1 = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        console.log('The first promise has resolved');
+        resolve(10);
+    }, 1 * 1000);
+
+});
+const b2 = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        console.log('The second promise has rejected');
+        reject('Failed');
+    }, 2 * 1000);
+});
+const b3 = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        console.log('The third promise has resolved');
+        resolve(30);
+    }, 3 * 1000);
+});
+
+
+Promise.all([b1, b2, b3])
+    .then(console.log) // this will never execute
+    .catch(console.log); // this will execute
+    
+OUTPUT:
+The first promise has resolved
+The second promise has rejected
+Failed
+The third promise has resolved
+
