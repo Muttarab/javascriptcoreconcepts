@@ -1,6 +1,8 @@
 //Promise.all()
 //The Promise.all() method returns a single promise that resolves when all the input promises have been resolved
 //If one of the input promise rejects, the Promise.all() method immediately returns a promise that rejects with an error of the first rejected promise
+
+
 //resolved promises example in promise.all()
 const a1 = new Promise((resolve, reject) => {
   setTimeout(() => {
