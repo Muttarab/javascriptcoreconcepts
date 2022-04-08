@@ -1,8 +1,21 @@
+//Promises in Javascript
+//Topics
+//Promise.all()
+//Promise.allSettled()
+//Promise.any()
+//Promise.race()
+//Promise.then()
+//Promise.catch()
+//Promise.finally()
+
+
+
+
+
+
 //Promise.all() in Javascript
 //The Promise.all() method returns a single promise that resolves when all the input promises have been resolved
 //If one of the input promise rejects, the Promise.all() method immediately returns a promise that rejects with an error of the first rejected promise
-
-
 //resolved promises example in promise.all()
 const a1 = new Promise((resolve, reject) => {
   setTimeout(() => {
@@ -122,6 +135,44 @@ Promise.race([promise1, promise2]).then((value) => {
 });
 // OUTPUT: "two"
 
+
+//Promise.then() (two scenarios(resolve,reason))
+//reason example
+const promise1 = new Promise((resolve, reject) => {
+  reject('Error!');
+});
+
+promise1.then((value) => {
+  console.log(value);
+}, reason => {
+  console.log(reason)
+});
+//OUTPUT: Error!
+
+//resolve example
+const promise1 = new Promise((resolve, reject) => {
+  resolve('Success!');
+});
+
+promise1.then((value) => {
+  console.log(value);
+}, reason => {
+  console.log(reason)
+});
+//OUTPUT: Success!
+
+
+//Promise.catch()
+const promise1 = new Promise((resolve, reject) => {
+  reject('Uh-oh!');
+});
+
+promise1.catch((error) => {
+  console.error(error);
+});
+// OUTPUT: Uh-oh!
+
+
 //Promise.finally()
 function checkMail() {
   return new Promise((resolve, reject) => {
@@ -150,41 +201,9 @@ checkMail()
  "Mail has arrived"
  "Experiment completed"
   
-//Promise.catch()
-const promise1 = new Promise((resolve, reject) => {
-  throw 'Uh-oh!';
-});
-
-promise1.catch((error) => {
-  console.error(error);
-});
-// OUTPUT: Uh-oh!
 
 
-//Promise.then() (two scenarios(resolve,reason))
-//reason example
-const promise1 = new Promise((resolve, reject) => {
-  reject('Error!');
-});
 
-promise1.then((value) => {
-  console.log(value);
-}, reason => {
-  console.log(reason)
-});
-//OUTPUT: Error!
-
-//resolve example
-const promise1 = new Promise((resolve, reject) => {
-  resolve('Success!');
-});
-
-promise1.then((value) => {
-  console.log(value);
-}, reason => {
-  console.log(reason)
-});
-//OUTPUT: Success!
 
 
 
